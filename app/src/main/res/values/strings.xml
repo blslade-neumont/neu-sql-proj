@@ -1,5 +1,8 @@
 <resources>
     <string name="app_name">SQL Task Manager</string>
+    <string name="placeholder_task_title">{{title}}</string>
+    <string name="placeholder_task_time">{{time}}</string>
+    <string name="btn_close_text">X</string>
     <string-array name="filters">
         <item>All</item>
         <item>Completed</item>

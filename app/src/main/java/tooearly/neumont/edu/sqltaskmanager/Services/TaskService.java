@@ -23,6 +23,7 @@ public final class TaskService extends SQLiteOpenHelper {
     private static final String KEY_NAME = "name";
     private static final String KEY_DESC = "desc";
     private static final String KEY_COLOR = "color";
+    private static final String KEY_COMPLETE = "completed";
     private static final String KEY_TIME = "time_spent";
 
     public TaskService(Context context) {
@@ -33,9 +34,10 @@ public final class TaskService extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
         db.execSQL("create table " + TASKS_TABLE_NAME + "(" +
                        KEY_ID + " integer primary key, " +
-                       KEY_NAME + " varchar(80), " +
+                       KEY_NAME + " varchar(80) not null, " +
                        KEY_DESC + " text, " +
                        KEY_COLOR + " integer, " +
+                       KEY_COMPLETE + " boolean default 0, " +
                        KEY_TIME + " integer" +
                    ");");
     }
@@ -75,7 +77,8 @@ public final class TaskService extends SQLiteOpenHelper {
                     task.name = cursor.getString(1);
                     task.description = cursor.getString(2);
                     task.color = Integer.parseInt(cursor.getString(3));
-                    task.time_spent = Integer.parseInt(cursor.getString(4));
+                    task.completed = cursor.getString(4).equals("1");
+                    task.time_spent = Integer.parseInt(cursor.getString(5));
                     tasks.add(task);
                 }
                 while (cursor.moveToNext());
@@ -103,7 +106,7 @@ public final class TaskService extends SQLiteOpenHelper {
             cursor = db.query(
                     TASKS_TABLE_NAME,
                     new String[] {
-                            KEY_ID, KEY_NAME, KEY_DESC, KEY_COLOR, KEY_TIME
+                            KEY_ID, KEY_NAME, KEY_DESC, KEY_COLOR, KEY_COMPLETE, KEY_TIME
                     },
                     KEY_ID + "=?",
                     new String[] { String.valueOf(id) },
@@ -118,7 +121,8 @@ public final class TaskService extends SQLiteOpenHelper {
             task.name = cursor.getString(1);
             task.description = cursor.getString(2);
             task.color = Integer.parseInt(cursor.getString(3));
-            task.time_spent = Integer.parseInt(cursor.getString(4));
+            task.completed = cursor.getString(4).equals("1");
+            task.time_spent = Integer.parseInt(cursor.getString(5));
             return task;
         }
         finally {
@@ -142,6 +146,7 @@ public final class TaskService extends SQLiteOpenHelper {
         values.put(KEY_DESC, task.description);
         values.put(KEY_COLOR, task.color);
         values.put(KEY_TIME, task.time_spent);
+        values.put(KEY_COMPLETE, task.completed);
         long id = db.insert(TASKS_TABLE_NAME, null, values);
         if (id == -1) return null;
         return findById(db, (int)id);
@@ -163,6 +168,7 @@ public final class TaskService extends SQLiteOpenHelper {
         values.put(KEY_DESC, task.description);
         values.put(KEY_COLOR, task.color);
         values.put(KEY_TIME, task.time_spent);
+        values.put(KEY_COMPLETE, task.completed);
         int rowsUpdated = db.update(
                 TASKS_TABLE_NAME,
                 values,
@@ -190,6 +196,25 @@ public final class TaskService extends SQLiteOpenHelper {
                 TASKS_TABLE_NAME,
                 KEY_ID + "=?",
                 new String[] { String.valueOf(id) }
+        );
+        return rowsDeleted != 0;
+    }
+
+    public boolean deleteAll() {
+        SQLiteDatabase db = null;
+        try {
+            db = this.getWritableDatabase();
+            return deleteAll(db);
+        }
+        finally {
+            if (db != null) db.close();
+        }
+    }
+    private boolean deleteAll(SQLiteDatabase db) {
+        int rowsDeleted = db.delete(
+                TASKS_TABLE_NAME,
+                null,
+                null
         );
         return rowsDeleted != 0;
     }

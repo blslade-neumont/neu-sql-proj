@@ -9,7 +9,7 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     android:orientation="vertical"
-    tools:context="tooearly.neumont.edu.sqltaskmanager.MainActivity">
+    tools:context="tooearly.neumont.edu.sqltaskmanager.Activities.MainActivity">
 
     <LinearLayout
         android:layout_width="wrap_content"
@@ -21,7 +21,7 @@
             android:layout_height="wrap_content"
             android:id="@+id/addTaskBtn"
             android:text="+"
-            android:onClick="addTask"/>
+            android:onClick="addTaskClicked"/>
 
         <TextView
             android:layout_width="wrap_content"
@@ -33,7 +33,6 @@
             android:layout_height="wrap_content"
             android:id="@+id/filter"
             android:entries="@array/filters" />
-
 
     </LinearLayout>
 
