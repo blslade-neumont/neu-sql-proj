@@ -2,6 +2,7 @@ package tooearly.neumont.edu.sqltaskmanager;
 
 import android.app.ListActivity;
 import android.content.Context;
+import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -26,7 +27,8 @@ public class MainActivity extends AppCompatActivity {
         View v = vi.inflate(R.layout.task_fragment, null);
 
         TextView textView = (TextView) v.findViewById(R.id.taskTitle);
-        textView.setText("your text");
+        textView.setText("your aoiejgoiajesoigoeajgisajeoigfhaoigetext");
+        textView.setTextColor(Color.RED);
 
         ViewGroup insertPoint = (ViewGroup) findViewById(R.id.taskList);
         insertPoint.addView(v, 0, new ViewGroup.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT));
@@ -39,6 +41,7 @@ public class MainActivity extends AppCompatActivity {
 
         TextView textView = (TextView) v.findViewById(R.id.taskTitle);
         textView.setText("your text " + clickCounter);
+        textView.setTextColor(Color.RED);
 
         ViewGroup insertPoint = (ViewGroup) findViewById(R.id.taskList);
         insertPoint.addView(v, 0, new ViewGroup.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT));
