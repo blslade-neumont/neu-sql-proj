@@ -1,21 +1,26 @@
 package tooearly.neumont.edu.sqltaskmanager;
 
+
 import android.app.ListActivity;
 import android.content.Context;
 import android.graphics.Color;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
 
+import tooearly.neumont.edu.sqltaskmanager.Models.Task;
+import tooearly.neumont.edu.sqltaskmanager.Models.TaskListAdapter;
+
 public class MainActivity extends AppCompatActivity {
-//    ArrayList<String> listItems=new ArrayList<String>();
-//    ArrayAdapter<String> adapter;
+    ArrayList<Task> listItems=new ArrayList<>();
+    TaskListAdapter adapter;
     int clickCounter=0;
 
     @Override
@@ -23,27 +28,24 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        LayoutInflater vi = (LayoutInflater) getApplicationContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        View v = vi.inflate(R.layout.task_fragment, null);
+        ListView listView = (ListView) findViewById(R.id.list);
 
-        TextView textView = (TextView) v.findViewById(R.id.taskTitle);
-        textView.setText("your aoiejgoiajesoigoeajgisajeoigfhaoigetext");
-        textView.setTextColor(Color.RED);
-
-        ViewGroup insertPoint = (ViewGroup) findViewById(R.id.taskList);
-        insertPoint.addView(v, 0, new ViewGroup.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT));
-
+        adapter=new TaskListAdapter(this, R.layout.task_fragment, listItems);
+        listView.setAdapter(adapter);
     }
 
     protected void addTask(View view) {
-        LayoutInflater vi = (LayoutInflater) getApplicationContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        View v = vi.inflate(R.layout.task_fragment, null);
+        Task t = new Task();
+        t.name = "name: " + clickCounter;
+        t.time_spent = 42;
+        clickCounter++;
 
-        TextView textView = (TextView) v.findViewById(R.id.taskTitle);
-        textView.setText("your text " + clickCounter);
-        textView.setTextColor(Color.RED);
+        listItems.add(t);
+        adapter.notifyDataSetChanged();
+    }
 
-        ViewGroup insertPoint = (ViewGroup) findViewById(R.id.taskList);
-        insertPoint.addView(v, 0, new ViewGroup.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT));
+    protected void deleteTask(View view) {
+//        ViewGroup insertPoint = (ViewGroup) findViewById(R.id.taskList);
+//        insertPoint.removeView(view);
     }
 }

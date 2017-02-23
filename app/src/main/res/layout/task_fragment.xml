@@ -19,6 +19,12 @@
         android:id="@+id/taskTitle"
         android:text="title heroisoeahjoiafae"/>
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/taskTime"
+        android:text="title heroisoeahjoiafae"/>
+
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
