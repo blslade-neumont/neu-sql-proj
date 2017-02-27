@@ -21,6 +21,7 @@
     </string-array>
 
     <string-array name="colors_array">
+        <item>White</item>
         <item>Blue</item>
         <item>Red</item>
         <item>Yellow</item>
