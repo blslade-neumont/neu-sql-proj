@@ -1,5 +1,6 @@
 package tooearly.neumont.edu.sqltaskmanager.Activities;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -16,6 +17,8 @@ import tooearly.neumont.edu.sqltaskmanager.R;
 import tooearly.neumont.edu.sqltaskmanager.Services.TaskService;
 
 public class MainActivity extends AppCompatActivity {
+    public static final String EXTRA_TASK_ID = "tooearly.neumont.edu.sqltaskmanager.EXTRA_TASK_ID";
+
     ArrayList<Task> listItems=new ArrayList<>();
     TaskListAdapter adapter;
 
@@ -24,7 +27,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        taskService = new TaskService(this);
+        taskService = TaskService.getInstance(this);
 
         Spinner filter = (Spinner)findViewById(R.id.filter);
         filter.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -61,14 +64,27 @@ public class MainActivity extends AppCompatActivity {
 
     private TaskService taskService;
 
-    protected void addTaskClicked(View view) {
-        //TODO: navigate to the create activity
+    public void addTaskClicked(View view) {
+        Intent intent = new Intent(this, EditTaskActivity.class);
+        intent.putExtra(EXTRA_TASK_ID, 0);
+        startActivity(intent);
     }
-    protected void completeTaskClicked(View view) {
-        //TODO: update the selected task to mark it as complete/incomplete, then refreshFilter()
+    public void completeTaskClicked(View view) {
+        Task task = (Task)((View)view.getParent()).getTag();
+        task.completed = !task.completed;
+        taskService.update(task);
+        refreshFilter();
     }
-    protected void deleteTaskClicked(View view) {
-        //TODO: delete the selected task from the database, then refreshFilter()
+    public void deleteTaskClicked(View view) {
+        Task task = (Task)((View)view.getParent()).getTag();
+        taskService.delete(task.id);
+        refreshFilter();
+    }
+    public void viewTaskClicked(View view) {
+        Task task = (Task)view.getTag();
+        Intent intent = new Intent(this, TaskDetailsActivity.class);
+        intent.putExtra(EXTRA_TASK_ID, task.id);
+        startActivity(intent);
     }
 
     protected void refreshFilter() {

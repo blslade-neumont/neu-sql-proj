@@ -36,6 +36,7 @@ public class TaskListAdapter extends ArrayAdapter<Task> {
         }
 
         Task task = getItem(position);
+        v.setTag(task);
 
         if (task != null) {
             TextView taskTitle = (TextView) v.findViewById(R.id.taskTitle);
