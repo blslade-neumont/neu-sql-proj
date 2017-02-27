@@ -61,7 +61,7 @@ public class MainActivity extends AppCompatActivity {
         adapter=new TaskListAdapter(this, R.layout.task_fragment, listItems);
         listView.setAdapter(adapter);
 
-        seedData();
+//        seedData();
     }
 
     private void seedData() {
