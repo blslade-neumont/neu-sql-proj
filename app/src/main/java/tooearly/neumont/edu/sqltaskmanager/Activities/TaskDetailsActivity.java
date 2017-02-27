@@ -19,6 +19,11 @@ public class TaskDetailsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_task_details);
 
         taskService = TaskService.getInstance(this);
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
 
         Intent intent = getIntent();
         int taskId = intent.getIntExtra(MainActivity.EXTRA_TASK_ID, 0);

@@ -74,6 +74,13 @@ public class MainActivity extends AppCompatActivity {
         taskService.create(new Task("Chicken"));
     }
 
+    @Override
+    protected void onStart() {
+        super.onStart();
+
+        refreshFilter();
+    }
+
     private TaskService taskService;
 
     public void addTaskClicked(View view) {
