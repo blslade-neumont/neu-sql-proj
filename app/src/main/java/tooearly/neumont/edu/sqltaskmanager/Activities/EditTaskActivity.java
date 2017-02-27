@@ -42,9 +42,6 @@ public class EditTaskActivity extends AppCompatActivity {
         EditText taskName = (EditText)findViewById(R.id.taskName);
         taskName.setText(task.name);
 
-
-
-
         EditText taskDescription = (EditText)findViewById(R.id.taskDescription);
         taskDescription.setText(task.description);
 

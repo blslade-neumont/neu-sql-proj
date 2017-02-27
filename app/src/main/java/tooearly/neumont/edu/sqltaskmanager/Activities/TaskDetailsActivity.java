@@ -29,11 +29,11 @@ public class TaskDetailsActivity extends AppCompatActivity {
         public void run() {
             timeInMilliseconds = SystemClock.uptimeMillis()-startTime;
             updateTime = timeSwapBuff+timeInMilliseconds;
-            int secs = (int)updateTime/1000;
+            int secs = (int)(updateTime/1000);
             int mins=secs/60;
             secs%=60;
             int milliseconds=(int)(updateTime%1000);
-            timerText.setText(""+mins+":"+String.format("%02d", secs) + ":" + String.format("%03d", milliseconds));
+            timerText.setText(""+mins+":"+String.format("%02d", secs));// + ":" + String.format("%03d", milliseconds));
             customerHandler.postDelayed(this, 0);
         }
     };
@@ -58,6 +58,8 @@ public class TaskDetailsActivity extends AppCompatActivity {
             public void onClick(View view){
                 timeSwapBuff+=timeInMilliseconds;
                 customerHandler.removeCallbacks(updateTimerThread);
+                task.time_spent = (int)(updateTime / 1000);
+                taskService.update(task);
             }
         });
 
@@ -78,11 +80,15 @@ public class TaskDetailsActivity extends AppCompatActivity {
         if (taskId == 0) throw new IllegalArgumentException("No task with ID " + taskId);
         else task = taskService.findById(taskId);
 
-        updateCompletedCheckbox();
+        timeSwapBuff = task.time_spent * 1000;
+        int secs = (int)(timeSwapBuff/1000);
+        int mins=secs/60;
+        secs%=60;
+        int milliseconds=(int)(timeSwapBuff%1000);
+        timerText.setText(""+mins+":"+String.format("%02d", secs));// + ":" + String.format("%03d", milliseconds));
 
         TextView taskName = (TextView) findViewById(R.id.taskName);
         taskName.setText(task.name);
-
 
         Button colorTag = (Button) findViewById(R.id.colorTag);
         colorTag.setBackgroundColor(task.color);
@@ -96,9 +102,6 @@ public class TaskDetailsActivity extends AppCompatActivity {
         TextView taskDescription = (TextView)findViewById(R.id.taskDescription);
         taskDescription.setText(task.description);
     }
-    private void updateCompletedCheckbox() {
-
-    }
 
     private TaskService taskService;
 
@@ -107,7 +110,6 @@ public class TaskDetailsActivity extends AppCompatActivity {
     public void onToggleClicked(View view) {
         task.completed = !task.completed;
         taskService.update(task);
-
 
         TextView taskName = (TextView) ((View) view.getParent()).findViewById(R.id.taskName);
         if(task.completed) {
