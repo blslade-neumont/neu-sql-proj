@@ -1,13 +1,16 @@
 package tooearly.neumont.edu.sqltaskmanager.Activities;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Paint;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import tooearly.neumont.edu.sqltaskmanager.Models.Task;
 import tooearly.neumont.edu.sqltaskmanager.R;

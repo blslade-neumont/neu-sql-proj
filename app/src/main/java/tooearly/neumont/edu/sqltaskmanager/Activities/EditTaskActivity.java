@@ -1,12 +1,15 @@
 package tooearly.neumont.edu.sqltaskmanager.Activities;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Paint;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import tooearly.neumont.edu.sqltaskmanager.Models.Task;
 import tooearly.neumont.edu.sqltaskmanager.R;
@@ -45,11 +48,30 @@ public class EditTaskActivity extends AppCompatActivity {
         taskDescription.setText(task.description);
     }
 
+    @Override
+    public void onBackPressed() {
+        new AlertDialog.Builder(this)
+                .setTitle("Leave Without Saving?")
+                .setMessage("Do you want to save your changes?")
+                .setIcon(android.R.drawable.ic_dialog_alert)
+                .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+
+                    public void onClick(DialogInterface dialog, int whichButton) {
+                        save();
+                    }})
+                .setNegativeButton("No", new DialogInterface.OnClickListener() {
+
+                    public void onClick(DialogInterface dialog, int whichButton) {
+                        finish();
+                    }}).show();
+    }
+
+
     private TaskService taskService;
 
     public Task task;
 
-    public void submitClicked(View view) {
+    public void save() {
         EditText taskName = (EditText)findViewById(R.id.taskName);
         task.name = taskName.getText().toString();
 
@@ -58,5 +80,9 @@ public class EditTaskActivity extends AppCompatActivity {
 
         taskService.update(task);
         finish();
+    }
+
+    public void submitClicked(View view) {
+        save();
     }
 }
