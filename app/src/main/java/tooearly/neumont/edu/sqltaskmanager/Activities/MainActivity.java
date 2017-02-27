@@ -60,7 +60,7 @@ public class MainActivity extends AppCompatActivity {
         taskService.create(task);
 
 
-        Task task2 = new Task("One");
+        Task task2 = new Task("Two");
         task2.color = Color.BLUE;
 
         taskService.create(task2);

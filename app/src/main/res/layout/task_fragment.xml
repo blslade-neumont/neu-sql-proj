@@ -3,18 +3,24 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context="tooearly.neumont.edu.sqltaskmanager.Activities.MainActivity"
     android:orientation="horizontal"
     android:onClick="viewTaskClicked">
 
-    <Button
-        android:layout_width="50dp"
-        android:layout_height="wrap_content"
+
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        app:srcCompat="@android:drawable/checkbox_on_background"
         android:id="@+id/completeTaskBtn"
-        android:text="O"
-        android:onClick="completeTaskClicked"/>
+        android:onClick="completeTaskClicked"
+        android:layout_weight="0.08" />
+
 
     <TextView
+        style="@style/AppText"
+        android:paddingTop="10dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="150dp"
@@ -28,17 +34,19 @@
         android:id="@+id/colorTag" />
 
     <TextView
+        style="@style/AppText"
+        android:paddingTop="10dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="420dp"
         android:id="@+id/taskTime"
         android:text="@string/placeholder_task_time" />
 
-    <Button
-        android:layout_width="50dp"
+    <ImageButton
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
+        app:srcCompat="@android:drawable/ic_menu_delete"
         android:id="@+id/deleteTaskBtn"
-        android:text="@string/btn_close_text"
-        android:onClick="deleteTaskClicked"/>
+        android:onClick="deleteTaskClicked" />
 </RelativeLayout>
