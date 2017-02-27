@@ -9,10 +9,10 @@
     android:onClick="viewTaskClicked">
 
 
-    <ImageButton
+    <CheckBox
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
-        app:srcCompat="@android:drawable/checkbox_on_background"
+        android:layout_marginTop="15dp"
         android:id="@+id/completeTaskBtn"
         android:onClick="completeTaskClicked"
         android:layout_weight="0.08" />

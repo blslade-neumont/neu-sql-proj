@@ -107,7 +107,14 @@ public class TaskDetailsActivity extends AppCompatActivity {
     public void onToggleClicked(View view) {
         task.completed = !task.completed;
         taskService.update(task);
-        updateCompletedCheckbox();
+
+
+        TextView taskName = (TextView) ((View) view.getParent()).findViewById(R.id.taskName);
+        if(task.completed) {
+            taskName.setPaintFlags(taskName.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
+        } else {
+            taskName.setPaintFlags(taskName.getPaintFlags() & (~ Paint.STRIKE_THRU_TEXT_FLAG));
+        }
     }
     public void editTaskClicked(View view) {
         Intent intent = new Intent(this, EditTaskActivity.class);

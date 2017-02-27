@@ -102,7 +102,7 @@ public class MainActivity extends AppCompatActivity {
         Task task = (Task)((View)view.getParent()).getTag();
         task.completed = !task.completed;
         taskService.update(task);
-        System.out.println(task.completed);
+
         refreshFilter();
     }
     public void deleteTaskClicked(View view) {

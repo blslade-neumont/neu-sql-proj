@@ -51,10 +51,9 @@
             android:layout_marginRight="50dp"
             android:id="@+id/colorTag" />
 
-        <ImageButton
+        <CheckBox
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:srcCompat="@android:drawable/checkbox_on_background"
             android:id="@+id/imageButton4"
             android:onClick="onToggleClicked" />
 
