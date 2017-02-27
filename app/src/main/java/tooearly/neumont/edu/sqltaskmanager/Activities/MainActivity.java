@@ -1,5 +1,9 @@
 package tooearly.neumont.edu.sqltaskmanager.Activities;
 
+import android.content.DialogInterface;
+import android.content.Intent;
+import android.graphics.Color;
+import android.support.v7.app.AlertDialog;
 import android.os.Handler;
 import android.os.SystemClock;
 import android.support.v7.app.AppCompatActivity;
@@ -9,6 +13,7 @@ import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Spinner;
+import android.widget.Toast;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -22,6 +27,8 @@ import tooearly.neumont.edu.sqltaskmanager.R;
 import tooearly.neumont.edu.sqltaskmanager.Services.TaskService;
 
 public class MainActivity extends AppCompatActivity {
+    public static final String EXTRA_TASK_ID = "tooearly.neumont.edu.sqltaskmanager.EXTRA_TASK_ID";
+
     ArrayList<Task> listItems=new ArrayList<>();
     TaskListAdapter adapter;
 
@@ -49,6 +56,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        taskService = TaskService.getInstance(this);
         btnStart = (Button)findViewById(R.id.startButton);
         btnStop = (Button)findViewById(R.id.stopButton);
         timerText = (TextView)findViewById(R.id.textViewTime);
@@ -93,8 +101,16 @@ public class MainActivity extends AppCompatActivity {
     private void seedData() {
         taskService.deleteAll();
 
-        taskService.create(new Task("One"));
-        taskService.create(new Task("Two"));
+        Task task = new Task("One");
+        task.color = Color.RED;
+
+        taskService.create(task);
+
+
+        Task task2 = new Task("Two");
+        task2.color = Color.BLUE;
+
+        taskService.create(task2);
         taskService.create(new Task("Three"));
 
         taskService.create(new Task("Fish"));
@@ -102,16 +118,50 @@ public class MainActivity extends AppCompatActivity {
         taskService.create(new Task("Chicken"));
     }
 
+    @Override
+    protected void onStart() {
+        super.onStart();
+
+        refreshFilter();
+    }
+
     private TaskService taskService;
 
-    protected void addTaskClicked(View view) {
-        //TODO: navigate to the create activity
+    public void addTaskClicked(View view) {
+        Intent intent = new Intent(this, EditTaskActivity.class);
+        intent.putExtra(EXTRA_TASK_ID, 0);
+        startActivity(intent);
     }
-    protected void completeTaskClicked(View view) {
-        //TODO: update the selected task to mark it as complete/incomplete, then refreshFilter()
+    public void completeTaskClicked(View view) {
+        Task task = (Task)((View)view.getParent()).getTag();
+        task.completed = !task.completed;
+        taskService.update(task);
+        System.out.println(task.completed);
+        refreshFilter();
     }
-    protected void deleteTaskClicked(View view) {
-        //TODO: delete the selected task from the database, then refreshFilter()
+    public void deleteTaskClicked(View view) {
+        final View finalView = view;
+        new AlertDialog.Builder(this)
+                .setTitle("Safe Delete")
+                .setMessage("Do you really want to delete this task?")
+                .setIcon(android.R.drawable.ic_dialog_alert)
+                .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+
+                    public void onClick(DialogInterface dialog, int whichButton) {
+                        Toast.makeText(MainActivity.this, "Deleted Task", Toast.LENGTH_SHORT).show();
+                        Task task = (Task)((View)finalView.getParent()).getTag();
+                        taskService.delete(task.id);
+                        refreshFilter();
+                    }})
+                .setNegativeButton(android.R.string.no, null).show();
+
+
+    }
+    public void viewTaskClicked(View view) {
+        Task task = (Task)view.getTag();
+        Intent intent = new Intent(this, TaskDetailsActivity.class);
+        intent.putExtra(EXTRA_TASK_ID, task.id);
+        startActivity(intent);
     }
 
     protected void refreshFilter() {

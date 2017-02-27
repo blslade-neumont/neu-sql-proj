@@ -1,7 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_edit_task"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="tooearly.neumont.edu.sqltaskmanager.Activities.EditTaskActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -11,10 +19,11 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Create a Task"
+            android:text="@string/title_create_task"
             android:gravity="center"
-            android:textSize="40dp"
+            android:textSize="40sp"
             android:paddingBottom="10dp"
+            android:id="@+id/lbl_title"
             />
 
     </LinearLayout>
@@ -29,14 +38,14 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Task Name:"
-            android:textSize="30dp"
+            android:text="@string/lbl_task_name"
+            android:textSize="30sp"
             />
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/taskName"
-            />
+            android:inputType="textCapWords" />
 
     </LinearLayout>
 
@@ -48,15 +57,15 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Description:"
-            android:textSize="30dp"
+            android:text="@string/lbl_description"
+            android:textSize="30sp"
             />
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/taskDescription"
-            />
-        
+            android:inputType="textCapSentences" />
+
     </LinearLayout>
 
     <LinearLayout
@@ -67,8 +76,8 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Task Color:"
-            android:textSize="30dp"
+            android:text="@string/lbl_task_color"
+            android:textSize="30sp"
             />
 
         <Spinner
@@ -77,18 +86,19 @@
             android:layout_height="wrap_content" />
 
     </LinearLayout>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:paddingTop="300dp">
 
         <Button
-            android:text="Submit"
+            android:text="@string/btn_submit"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/button" />
+            android:onClick="submitClicked"
+            android:id="@+id/btn_submit" />
 
     </LinearLayout>
-
 
 </LinearLayout>

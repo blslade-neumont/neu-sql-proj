@@ -3,6 +3,17 @@
     <string name="placeholder_task_title">{{title}}</string>
     <string name="placeholder_task_time">{{time}}</string>
     <string name="btn_close_text">X</string>
+
+    <string name="title_create_task">Create Task</string>
+    <string name="title_edit_task">Edit Task</string>
+    <string name="title_task_details">Task Details</string>
+
+    <string name="lbl_task_color">Task Color:</string>
+    <string name="lbl_description">Description:</string>
+    <string name="lbl_task_name">Task Name:</string>
+
+    <string name="btn_submit">Submit</string>
+
     <string-array name="filters">
         <item>All</item>
         <item>Completed</item>
@@ -10,6 +21,7 @@
     </string-array>
 
     <string-array name="colors_array">
+        <item>White</item>
         <item>Blue</item>
         <item>Red</item>
         <item>Yellow</item>

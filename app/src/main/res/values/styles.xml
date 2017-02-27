@@ -8,4 +8,18 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <style name="AppFont">
+        <item name="android:fontFamily">Roboto</item>
+    </style>
+
+
+    <style name="AppText" parent="AppFont">
+        <item name="android:textSize">20sp</item>
+    </style>
+
+
+    <style name="AppTextBig" parent="AppFont">
+        <item name="android:textSize">30sp</item>
+    </style>
+
 </resources>

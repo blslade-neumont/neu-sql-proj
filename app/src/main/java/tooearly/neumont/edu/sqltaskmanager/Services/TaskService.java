@@ -26,6 +26,12 @@ public final class TaskService extends SQLiteOpenHelper {
     private static final String KEY_COMPLETE = "completed";
     private static final String KEY_TIME = "time_spent";
 
+    private static TaskService _instance;
+    public static TaskService getInstance(Context context) {
+        if (_instance == null) _instance = new TaskService(context);
+        return _instance;
+    }
+
     public TaskService(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
