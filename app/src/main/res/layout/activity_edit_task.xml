@@ -19,10 +19,11 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Create a Task"
+            android:text="@string/title_create_a_task"
             android:gravity="center"
-            android:textSize="40dp"
+            android:textSize="40sp"
             android:paddingBottom="10dp"
+            android:id="@+id/lbl_title"
             />
 
     </LinearLayout>
@@ -37,14 +38,14 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Task Name:"
-            android:textSize="30dp"
+            android:text="@string/lbl_task_name"
+            android:textSize="30sp"
             />
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/taskName"
-            />
+            android:inputType="textCapWords" />
 
     </LinearLayout>
 
@@ -56,14 +57,14 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Description:"
-            android:textSize="30dp"
+            android:text="@string/lbl_description"
+            android:textSize="30sp"
             />
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/taskDescription"
-            />
+            android:inputType="textCapSentences" />
 
     </LinearLayout>
 
@@ -75,8 +76,8 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Task Color:"
-            android:textSize="30dp"
+            android:text="@string/lbl_task_color"
+            android:textSize="30sp"
             />
 
         <Spinner
@@ -85,16 +86,18 @@
             android:layout_height="wrap_content" />
 
     </LinearLayout>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:paddingTop="300dp">
 
         <Button
-            android:text="Submit"
+            android:text="@string/btn_submit"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/button" />
+            android:onClick="submitClicked"
+            android:id="@+id/btn_submit" />
 
     </LinearLayout>
 

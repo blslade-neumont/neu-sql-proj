@@ -20,9 +20,9 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Task Details"
+            android:text="@string/title_task_details"
             android:gravity="center"
-            android:textSize="40dp"
+            android:textSize="40sp"
             android:paddingBottom="10dp"
             />
 
@@ -39,13 +39,13 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Task Name"
-            android:textSize="30dp"
+            android:text="@string/lbl_task_name"
+            android:textSize="30sp"
             android:paddingRight="250dp"
             />
 
         <ImageButton
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="match_parent"
             app:srcCompat="@android:drawable/checkbox_on_background"
             android:id="@+id/imageButton4"
@@ -55,13 +55,15 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:srcCompat="@android:drawable/ic_menu_edit"
-            android:id="@+id/imageButton2" />
+            android:id="@+id/imageButton2"
+            tools:ignore="ContentDescription" />
 
         <ImageButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:srcCompat="@android:drawable/ic_menu_delete"
-            android:id="@+id/imageButton3" />
+            android:id="@+id/imageButton3"
+            tools:ignore="ContentDescription" />
 
     </LinearLayout>
 
@@ -121,14 +123,14 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Description:"
-            android:textSize="30dp"
+            android:text="@string/lbl_description"
+            android:textSize="30sp"
             />
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/taskDescription"
-            />
+            android:inputType="textCapSentences" />
 
     </LinearLayout>
 
