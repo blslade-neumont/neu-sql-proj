@@ -19,7 +19,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/title_create_a_task"
+            android:text="@string/title_create_task"
             android:gravity="center"
             android:textSize="40sp"
             android:paddingBottom="10dp"
