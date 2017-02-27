@@ -1,6 +1,7 @@
 package tooearly.neumont.edu.sqltaskmanager.Activities;
 
 import android.content.Intent;
+import android.graphics.Paint;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -34,6 +35,12 @@ public class TaskDetailsActivity extends AppCompatActivity {
 
         TextView taskName = (TextView) findViewById(R.id.taskName);
         taskName.setText(task.name);
+
+        if(task.completed) {
+            taskName.setPaintFlags(taskName.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
+        } else {
+            taskName.setPaintFlags(taskName.getPaintFlags() & (~ Paint.STRIKE_THRU_TEXT_FLAG));
+        }
 
         TextView taskDescription = (TextView)findViewById(R.id.taskDescription);
         taskDescription.setText(task.description);

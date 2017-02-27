@@ -1,6 +1,7 @@
 package tooearly.neumont.edu.sqltaskmanager.Activities;
 
 import android.content.Intent;
+import android.graphics.Paint;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -36,6 +37,9 @@ public class EditTaskActivity extends AppCompatActivity {
 
         EditText taskName = (EditText)findViewById(R.id.taskName);
         taskName.setText(task.name);
+
+
+
 
         EditText taskDescription = (EditText)findViewById(R.id.taskDescription);
         taskDescription.setText(task.description);
