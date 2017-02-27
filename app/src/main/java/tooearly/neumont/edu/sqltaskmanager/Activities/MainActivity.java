@@ -45,7 +45,7 @@ public class MainActivity extends AppCompatActivity {
             int mins=secs/60;
             secs%=60;
             int milliseconds=(int)(updateTime%1000);
-            timerText.setText(""+mins+":"+String.format("%2d", secs) + ":" + String.format("%3d", milliseconds));
+            timerText.setText(""+mins+":"+String.format("%02d", secs) + ":" + String.format("%03d", milliseconds));
             customerHandler.postDelayed(this, 0);
         }
     };
