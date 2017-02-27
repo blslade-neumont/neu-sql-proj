@@ -41,9 +41,15 @@
             android:layout_height="wrap_content"
             android:text="@string/lbl_task_name"
             android:textSize="30sp"
-            android:paddingRight="250dp"
+            android:paddingRight="200dp"
             android:id="@+id/taskName"
             />
+
+        <Button
+            android:layout_width="50dp"
+            android:layout_height="match_parent"
+            android:layout_marginRight="50dp"
+            android:id="@+id/colorTag" />
 
         <ImageButton
             android:layout_width="wrap_content"

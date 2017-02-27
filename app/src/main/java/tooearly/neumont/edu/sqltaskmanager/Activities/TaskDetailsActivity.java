@@ -5,6 +5,7 @@ import android.graphics.Paint;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
@@ -40,6 +41,10 @@ public class TaskDetailsActivity extends AppCompatActivity {
 
         TextView taskName = (TextView) findViewById(R.id.taskName);
         taskName.setText(task.name);
+
+
+        Button colorTag = (Button) findViewById(R.id.colorTag);
+        colorTag.setBackgroundColor(task.color);
 
         if(task.completed) {
             taskName.setPaintFlags(taskName.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
