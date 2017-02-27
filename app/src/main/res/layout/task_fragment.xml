@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="tooearly.neumont.edu.sqltaskmanager.Activities.MainActivity"
+    android:orientation="horizontal">
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/completeTaskBtn"
+        android:text="O"
+        android:onClick="completeTaskClicked"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="150dp"
+        android:id="@+id/taskTitle"
+        android:text="@string/placeholder_task_title"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="420dp"
+        android:id="@+id/taskTime"
+        android:text="@string/placeholder_task_time" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:id="@+id/deleteTaskBtn"
+        android:text="@string/btn_close_text"
+        android:onClick="deleteTaskClicked"/>
+</RelativeLayout>
