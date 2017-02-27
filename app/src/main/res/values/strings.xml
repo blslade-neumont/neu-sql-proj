@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">SQL Task Manager</string>
+
+    <string-array name="colors_array">
+        <item>Blue</item>
+        <item>Red</item>
+        <item>Yellow</item>
+        <item>Green</item>
+    </string-array>
 </resources>
