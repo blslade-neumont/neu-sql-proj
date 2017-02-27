@@ -32,23 +32,7 @@ public class MainActivity extends AppCompatActivity {
     ArrayList<Task> listItems=new ArrayList<>();
     TaskListAdapter adapter;
 
-    Button btnStart, btnStop;
-    TextView timerText;
-    Handler customerHandler = new Handler();
-    long startTime=0L, timeInMilliseconds=0L, timeSwapBuff=0L, updateTime=0L;
-    Runnable updateTimerThread = new Runnable() {
-        @Override
-        public void run() {
-            timeInMilliseconds = SystemClock.uptimeMillis()-startTime;
-            updateTime = timeSwapBuff+timeInMilliseconds;
-            int secs = (int)updateTime/1000;
-            int mins=secs/60;
-            secs%=60;
-            int milliseconds=(int)(updateTime%1000);
-            timerText.setText(""+mins+":"+String.format("%02d", secs) + ":" + String.format("%03d", milliseconds));
-            customerHandler.postDelayed(this, 0);
-        }
-    };
+
 
 
     @Override
@@ -57,24 +41,6 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         taskService = TaskService.getInstance(this);
-        btnStart = (Button)findViewById(R.id.startButton);
-        btnStop = (Button)findViewById(R.id.stopButton);
-        timerText = (TextView)findViewById(R.id.textViewTime);
-
-        btnStart.setOnClickListener(new View.OnClickListener(){
-            public void onClick(View view){
-                startTime = SystemClock.uptimeMillis();
-                customerHandler.postDelayed(updateTimerThread, 0);
-            }
-        });
-
-        btnStop.setOnClickListener(new View.OnClickListener(){
-            public void onClick(View view){
-                timeSwapBuff+=timeInMilliseconds;
-                customerHandler.removeCallbacks(updateTimerThread);
-            }
-        });
-
         taskService = new TaskService(this);
 
         Spinner filter = (Spinner)findViewById(R.id.filter);
