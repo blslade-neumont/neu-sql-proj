@@ -1,6 +1,7 @@
 package tooearly.neumont.edu.sqltaskmanager.Activities;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -53,8 +54,16 @@ public class MainActivity extends AppCompatActivity {
     private void seedData() {
         taskService.deleteAll();
 
-        taskService.create(new Task("One"));
-        taskService.create(new Task("Two"));
+        Task task = new Task("One");
+        task.color = Color.RED;
+
+        taskService.create(task);
+
+
+        Task task2 = new Task("One");
+        task2.color = Color.BLUE;
+
+        taskService.create(task2);
         taskService.create(new Task("Three"));
 
         taskService.create(new Task("Fish"));
@@ -73,6 +82,7 @@ public class MainActivity extends AppCompatActivity {
         Task task = (Task)((View)view.getParent()).getTag();
         task.completed = !task.completed;
         taskService.update(task);
+        System.out.println(task.completed);
         refreshFilter();
     }
     public void deleteTaskClicked(View view) {
