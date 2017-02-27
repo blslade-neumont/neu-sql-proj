@@ -1,13 +1,16 @@
 package tooearly.neumont.edu.sqltaskmanager.Activities;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -86,9 +89,22 @@ public class MainActivity extends AppCompatActivity {
         refreshFilter();
     }
     public void deleteTaskClicked(View view) {
-        Task task = (Task)((View)view.getParent()).getTag();
-        taskService.delete(task.id);
-        refreshFilter();
+        final View finalView = view;
+        new AlertDialog.Builder(this)
+                .setTitle("Safe Delete")
+                .setMessage("Do you really want to delete this task?")
+                .setIcon(android.R.drawable.ic_dialog_alert)
+                .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+
+                    public void onClick(DialogInterface dialog, int whichButton) {
+                        Toast.makeText(MainActivity.this, "Deleted Task", Toast.LENGTH_SHORT).show();
+                        Task task = (Task)((View)finalView.getParent()).getTag();
+                        taskService.delete(task.id);
+                        refreshFilter();
+                    }})
+                .setNegativeButton(android.R.string.no, null).show();
+
+
     }
     public void viewTaskClicked(View view) {
         Task task = (Task)view.getTag();
